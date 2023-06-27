@@ -68,9 +68,33 @@ def add_movie_names(file_path):
         with open(file_path, 'a') as file:
             file.write(movie_name + '\n')
 
+def remove_movie_names(file_path):
+    movie_names = read_movie_names(file_path)
+    
+    print("Liste des films disponibles :")
+    for i, movie_name in enumerate(movie_names, start=1):
+        print(f"{i}. {movie_name}")
+    
+    while True:
+        try:
+            index = int(input("Entrez le numéro du film à supprimer (ou '0' pour quitter) : "))
+            if index == 0:
+                break
+            if index < 1 or index > len(movie_names):
+                print("Numéro invalide. Veuillez réessayer.")
+            else:
+                del movie_names[index - 1]
+                with open(file_path, 'w') as file:
+                    file.write('\n'.join(movie_names))
+                print("Film supprimé avec succès.")
+        except ValueError:
+            print("Entrée invalide. Veuillez entrer un numéro.")
+
+
 movie_file = "films.txt"
 movie_names = read_movie_names(movie_file)
 add_movie_names(movie_file)
+remove_movie_names(movie_file)
 
 # Boucle principale pour rechercher les films
 for movie_name in movie_names:
