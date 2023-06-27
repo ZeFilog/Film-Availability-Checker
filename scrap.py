@@ -58,8 +58,7 @@ def read_movie_names(file_path):
         movie_names = [line.strip() for line in file]
     return movie_names
 
-movie_file = "films.txt"
-movie_names = read_movie_names(movie_file)
+
 
 def add_movie_names(file_path):
     while True:
@@ -71,10 +70,7 @@ def add_movie_names(file_path):
 
 movie_file = "films.txt"
 movie_names = read_movie_names(movie_file)
-
-# Proposer d'ajouter ou de supprimer des films
 add_movie_names(movie_file)
-#remove_movie_names(movie_file)
 
 # Boucle principale pour rechercher les films
 for movie_name in movie_names:
