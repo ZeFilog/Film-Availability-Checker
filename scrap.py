@@ -56,14 +56,41 @@ def filter_results(results):
 
     return filtered_results
 
-query = input("Entrez votre recherche : ")
-search_results = search_google(query)
-results = extract_div_elements(search_results, ["ellip bclEt", "ellip rsj3fb"])
-filtered_results = filter_results(results)
+def read_movie_names(file_path):
+    with open(file_path, 'r') as file:
+        movie_names = [line.strip() for line in file]
+    return movie_names
 
+movie_file = "films.txt"
+movie_names = read_movie_names(movie_file)
 
-if not filtered_results:
-    print("Désolé, il va falloir attendre.")
-else:
-    for key, value in filtered_results.items():
-        print(f"Ce film est disponible sur la plateforme {key} avec l'abonnement.")
+def add_movie_names(file_path):
+    while True:
+        movie_name = input("Entrez le nom du film à ajouter (ou 'q' pour quitter) : ")
+        if movie_name == 'q':
+            break
+        with open(file_path, 'a') as file:
+            file.write(movie_name + '\n')
+
+movie_file = "films.txt"
+movie_names = read_movie_names(movie_file)
+
+# Proposer d'ajouter ou de supprimer des films
+add_movie_names(movie_file)
+#remove_movie_names(movie_file)
+
+# Boucle principale pour rechercher les films
+for movie_name in movie_names:
+    search_results = search_google(movie_name)
+    results = extract_div_elements(search_results, ["ellip bclEt", "ellip rsj3fb"])
+
+    if not results:
+        print(f"Désolé, {movie_name} est incorrect. Veuillez réessayer.")
+    else:
+        filtered_results = filter_results(results)
+
+        if not filtered_results:
+            print(f"Désolé, pour {movie_name} il va falloir attendre.")
+        else:
+            for key, value in filtered_results.items():
+                print(f"{movie_name} est disponible sur la plateforme {key} avec l'abonnement.")           
