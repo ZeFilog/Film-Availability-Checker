@@ -11,13 +11,13 @@ def search_google(query):
     driver = webdriver.Chrome(service = s,options=chrome_options)
     driver.get("https://www.google.com/search?q=" + query)
 
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(5)
     try :
         bouton_cookies = driver.find_element(By.ID, "L2AGLb")
         bouton_cookies.click()
     except:
         pass
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(5)
     try:
         button_xpath = '//g-expandable-content[@role="button" and @tabindex="0" and @jscontroller="Ah7cLd"]'
         button = driver.find_element(By.XPATH, button_xpath)
@@ -91,15 +91,7 @@ def remove_movie_names(file_path):
         except ValueError:
             print("Entrée invalide. Veuillez entrer un numéro.")
 
-
-movie_file = "films.txt"
-movie_names = read_movie_names(movie_file)
-add_movie_names(movie_file)
-remove_movie_names(movie_file)
-movie_names = read_movie_names(movie_file)
-
-# Boucle principale pour rechercher les films
-for movie_name in movie_names:
+def check_movie_availability(movie_name):
     search_results = search_google(movie_name)
     results = extract_div_elements(search_results, ["ellip bclEt", "ellip rsj3fb"])
 
@@ -112,4 +104,19 @@ for movie_name in movie_names:
             print(f"Désolé, pour {movie_name} il va falloir attendre.")
         else:
             for key, value in filtered_results.items():
-                print(f"{movie_name} est disponible sur la plateforme {key} avec l'abonnement.")           
+                print(f"{movie_name} est disponible sur la plateforme {key} avec l'abonnement.")
+
+def run_movie_search(movie_file):
+    movie_names = read_movie_names(movie_file)
+
+    for movie_name in movie_names:
+        check_movie_availability(movie_name)
+
+def main():
+    movie_file = "films.txt"
+    add_movie_names(movie_file)
+    remove_movie_names(movie_file)
+    run_movie_search(movie_file)
+
+if __name__ == "__main__":
+    main()
