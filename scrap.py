@@ -46,9 +46,10 @@ def extract_div_elements(html, class_names):
 def filter_results(results):
     filtered_results = {}
     desired_keys = ["Amazon Prime Video", "Netflix", "Disney+"]
+    desired_service = ["Abonnement","Abonnement premium"]
 
     for key, value in results.items():
-        if key in desired_keys and value == "Abonnement" or value == "Abonnement premium" :
+        if key in desired_keys and desired_service :
             filtered_results[key] = value
 
     return filtered_results
