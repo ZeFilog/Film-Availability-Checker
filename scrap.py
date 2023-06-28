@@ -48,7 +48,7 @@ def filter_results(results):
     desired_keys = ["Amazon Prime Video", "Netflix", "Disney+"]
 
     for key, value in results.items():
-        if key in desired_keys and value == "Abonnement":
+        if key in desired_keys and value == "Abonnement" or value == "Abonnement premium" :
             filtered_results[key] = value
 
     return filtered_results
@@ -66,7 +66,7 @@ def add_movie_names(file_path):
         if movie_name == 'q':
             break
         with open(file_path, 'a') as file:
-            file.write(movie_name + '\n')
+            file.write(movie_name + '\n' )
 
 def remove_movie_names(file_path):
     movie_names = read_movie_names(file_path)
