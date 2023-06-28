@@ -95,6 +95,7 @@ movie_file = "films.txt"
 movie_names = read_movie_names(movie_file)
 add_movie_names(movie_file)
 remove_movie_names(movie_file)
+movie_names = read_movie_names(movie_file)
 
 # Boucle principale pour rechercher les films
 for movie_name in movie_names:
