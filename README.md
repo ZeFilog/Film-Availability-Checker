@@ -33,4 +33,4 @@ Ensuite, le programme principal s'exécute :
 
 Cela permet à l'utilisateur de vérifier facilement la disponibilité des films sur les plateformes de streaming populaires.
 
-J'espère que cela vous aide à comprendre le fonctionnement du projet. Si vous avez d'autres questions, n'hésitez pas à demander !
+readme généré avec gpt3
