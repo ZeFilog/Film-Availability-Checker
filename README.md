@@ -1,5 +1,5 @@
 # scrap_film
-Bien sûr! Voici un résumé détaillé du fonctionnement du projet et de chaque fonction :
+
 
 Le projet "Film Availability Checker" est un programme Python qui permet de rechercher la disponibilité des films sur les plateformes de streaming comme Amazon Prime Video, Netflix et Disney+. Voici comment le programme fonctionne :
 
